@@ -185,6 +185,9 @@ namespace Unit3D
 								continue;
 							}
 							
+							// Wait for a frame for unity to react to teardown callbacks
+							yield return null;
+							
 							// if we get this far, test is a success
 							totalSuccessful++;
 						}
