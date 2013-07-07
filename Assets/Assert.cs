@@ -110,6 +110,21 @@ namespace Unit3D
 			}
 		}
 		
+		/// <summary>
+		/// Assert equality of the two passed objects
+		/// </summary>
+		/// <param name='o1'>
+		/// Object 1
+		/// </param>
+		/// <param name='o2'>
+		/// Object 2
+		/// </param>
+		/// <param name='msg'>
+		/// Error message in case of failure
+		/// </param>
+		/// <exception cref='AssertException'>
+		/// Is thrown when the two objects are not equal
+		/// </exception>
 		public static void IsEqual(System.Object o1, System.Object o2, string msg)
 		{
 			if(!o1.Equals(o2))
@@ -118,9 +133,70 @@ namespace Unit3D
 			}
 		}
 		
+		/// <summary>
+		/// Assert inequality of the two passed objects
+		/// </summary>
+		/// <param name='o1'>
+		/// Object 1
+		/// </param>
+		/// <param name='o2'>
+		/// Object 2
+		/// </param>
+		/// <param name='msg'>
+		/// Error message in case of failure
+		/// </param>
+		/// <exception cref='AssertException'>
+		/// Is thrown when the two objects are equal
+		/// </exception>
 		public static void IsNotEqual(System.Object o1, System.Object o2, string msg)
 		{
 			if(o1.Equals(o2))
+			{
+				throw new AssertException(msg);
+			}
+		}
+		
+		/// <summary>
+		/// Assert equality of the two passed objects within 7 decimal paces
+		/// </summary>
+		/// <param name='o1'>
+		/// Object 1
+		/// </param>
+		/// <param name='o2'>
+		/// Object 2
+		/// </param>
+		/// <param name='msg'>
+		/// Error message in case of failure
+		/// </param>
+		/// <exception cref='AssertException'>
+		/// Is thrown when the two objects are inequal
+		/// </exception>
+		public static void IsAlmostEqual(double o1, double o2, string msg)
+		{
+			if(Math.Round (o1, 7) != Math.Round (o2, 7))
+			{
+				throw new AssertException(msg);
+			}
+		}
+		
+		/// <summary>
+		/// Assert inequality of the two passed objects within 7 decimal paces
+		/// </summary>
+		/// <param name='o1'>
+		/// Object 1
+		/// </param>
+		/// <param name='o2'>
+		/// Object 2
+		/// </param>
+		/// <param name='msg'>
+		/// Error message in case of failure
+		/// </param>
+		/// <exception cref='AssertException'>
+		/// Is thrown when the two objects are equal
+		/// </exception>
+		public static void IsNotAlmostEqual(double o1, double o2, string msg)
+		{
+			if(Math.Round (o1, 7) == Math.Round (o2, 7))
 			{
 				throw new AssertException(msg);
 			}

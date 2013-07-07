@@ -1,2 +1,4 @@
 Library
 build
+Temp
+*.pidb
