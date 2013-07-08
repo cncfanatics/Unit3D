@@ -103,8 +103,8 @@ namespace Unit3D
 				{
 					if(methodInfo.GetCustomAttributes(typeof(UnitTest), false).Length > 0)
 					{
-						bool setupFailed = false;
-						
+						bool failed = false;
+					
 						// Invoke the setup method
 						try
 						{
@@ -112,14 +112,12 @@ namespace Unit3D
 						}
 						catch(Exception e)
 						{
-							setupFailed = true;
 							ReportFailure (methodInfo, e);
-							totalFailed++;
-							continue;
+							failed = true;
 						}
 						
 						// only continue if the setup was successful
-						if(setupFailed == false)
+						if(!failed)
 						{
 							// If we're dealing with generators, we'll need some special magic
 							if(methodInfo.GetCustomAttributes(typeof(Generator), false).Length > 0)
@@ -128,7 +126,6 @@ namespace Unit3D
 								IEnumerable enumerable = methodInfo.Invoke(testCase, null) as IEnumerable;
 								IEnumerator enumerator = enumerable.GetEnumerator();
 								bool moreContent = true;
-								bool failed = false;
 								
 								// Do exception handling and go through the whole generator
 								do
@@ -144,19 +141,12 @@ namespace Unit3D
 									{
 										failed = true;
 										ReportFailure(methodInfo, e);
-										totalFailed++;
 										break;
 									}
 									
 									yield return obj;
 									
 								} while(moreContent);
-								
-								// Break out if necessary
-								if(failed)
-								{
-									continue;
-								}
 							}
 							// Normal case: just Invoke the method and be done with it :)
 							else
@@ -168,29 +158,33 @@ namespace Unit3D
 								catch(Exception e)
 								{
 									ReportFailure(methodInfo, e);
-									totalFailed++;
-									continue;
+									failed = true;
 								}
 							}
-							
-							// Teardown
-							try
-							{
-								testCase.TearDown();
-							}
-							catch(Exception e)
-							{
-								ReportFailure(methodInfo, e);
-								totalFailed++;
-								continue;
-							}
-							
-							// Wait for a frame for unity to react to teardown callbacks
-							yield return null;
-							
-							// if we get this far, test is a success
+						}
+						
+						// Teardown
+						try
+						{
+							testCase.TearDown();
+						}
+						catch(Exception e)
+						{
+							ReportFailure(methodInfo, e);
+							failed = true;
+						}
+						
+						if(!failed)
+						{
 							totalSuccessful++;
 						}
+						else
+						{
+							totalFailed++;
+						}
+						
+						// Wait for a frame for unity to react to teardown callbacks
+						yield return null;
 					}
 				}
 			}
