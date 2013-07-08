@@ -24,7 +24,7 @@ public class TestGenerators : TestCase
 {
 	[Generator]
 	[UnitTest]
-	public IEnumerable TestYieldLoop()
+	public IEnumerator TestYieldLoop()
 	{
 		int i;
 		for(i = 0; i < 5; i++)

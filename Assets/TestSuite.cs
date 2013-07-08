@@ -123,8 +123,7 @@ namespace Unit3D
 							if(methodInfo.GetCustomAttributes(typeof(Generator), false).Length > 0)
 							{
 								// Get the IEnumerator that is returned by the unit test method
-								IEnumerable enumerable = methodInfo.Invoke(testCase, null) as IEnumerable;
-								IEnumerator enumerator = enumerable.GetEnumerator();
+								IEnumerator enumerator = methodInfo.Invoke(testCase, null) as IEnumerator;
 								bool moreContent = true;
 								
 								// Do exception handling and go through the whole generator
