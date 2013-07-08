@@ -1,8 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\TestSuite.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\TestRunner.cs">
     <Files>
-      <File FileName="Assets\TestSuite.cs" Line="47" Column="17" />
+      <File FileName="Assets\TestSuite.cs" Line="4" Column="11" />
+      <File FileName="Assets\TestCase.cs" Line="4" Column="11" />
+      <File FileName="Assets\Assert.cs" Line="4" Column="11" />
+      <File FileName="Assets\Editor\TestAssert.cs" Line="4" Column="11" />
+      <File FileName="Assets\Editor\TestGenerators.cs" Line="4" Column="11" />
+      <File FileName="Assets\Editor\TestRunner.cs" Line="4" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
