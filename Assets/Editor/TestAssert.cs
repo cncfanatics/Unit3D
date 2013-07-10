@@ -80,14 +80,14 @@ public class TestAssert : TestCase
 	[UnitTest]
 	public void TestAssertAlmostEqual()
 	{
-		Assert.Throws<AssertException>(() => Assert.IsAlmostEqual(0.3564539877, 0.3564439, "#AAE1"), "#AAE2");
+		Assert.Throws<AssertException>(() => Assert.IsAlmostEqual(0.356, 0.357453, "#AAE1"), "#AAE2");
 		Assert.IsAlmostEqual(5.647468794654856464, 5.64746879465481984, "#AAE3");
 	}
 	
 	[UnitTest]
 	public void TestAssertNotAlmostEqual()
 	{
-		Assert.Throws<AssertException>(() => Assert.IsNotAlmostEqual(0.45648946546546508566516574, 0.456489465465465085684864614, "#ANAE1"), "#ANAE2");
-		Assert.IsNotAlmostEqual(5.546546541657, 5.546536541657, "#ANAE3");
+		Assert.Throws<AssertException>(() => Assert.IsNotAlmostEqual(0.4573, 0.45733, "#ANAE1"), "#ANAE2");
+		Assert.IsNotAlmostEqual(5.54621, 5.547335, "#ANAE3");
 	}
 }

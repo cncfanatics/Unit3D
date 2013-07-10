@@ -129,7 +129,7 @@ namespace Unit3D
 		{
 			if(!o1.Equals(o2))
 			{
-				throw new AssertException(msg);
+				throw new AssertException(String.Format("{0}\nExpected: {1} Got: {2}", msg, o1, o2));
 			}
 		}
 		
@@ -152,7 +152,7 @@ namespace Unit3D
 		{
 			if(o1.Equals(o2))
 			{
-				throw new AssertException(msg);
+				throw new AssertException(String.Format("{0}\nExpected: {1} Got: {2}", msg, o1, o2));
 			}
 		}
 		
@@ -173,9 +173,9 @@ namespace Unit3D
 		/// </exception>
 		public static void IsAlmostEqual(double o1, double o2, string msg)
 		{
-			if(Math.Round (o1, 7) != Math.Round (o2, 7))
+			if(Math.Abs(Math.Round (o1, 7) - Math.Round (o2, 7)) > 0.001)
 			{
-				throw new AssertException(msg);
+				throw new AssertException(String.Format("{0}\nExpected: {1} Got: {2}", msg, o1, o2));
 			}
 		}
 		
@@ -196,9 +196,9 @@ namespace Unit3D
 		/// </exception>
 		public static void IsNotAlmostEqual(double o1, double o2, string msg)
 		{
-			if(Math.Round (o1, 7) == Math.Round (o2, 7))
+			if(Math.Abs(Math.Round (o1, 7) - Math.Round (o2, 7)) <= 0.001)
 			{
-				throw new AssertException(msg);
+				throw new AssertException(String.Format("{0}\nExpected: {1} Got: {2}", msg, o1, o2));
 			}
 		}
 	}

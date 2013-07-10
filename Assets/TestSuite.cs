@@ -1,7 +1,7 @@
 /*
  *  This file is part of Unit3D.
  *
- *  Unit3D is free software: you can redistribute it and/or modify
+ *  Foobar is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
@@ -220,7 +220,7 @@ namespace Unit3D
 		/// </param>
 		protected virtual void ReportFailure(MethodInfo methodInfo, Exception e)
 		{
-			Debug.LogException(e);
+			Debug.LogError(String.Format("Error while running test {0}\n{1}\n{2}", methodInfo.Name, e.Message, e.StackTrace));
 		}
 		
 		/// <summary>
